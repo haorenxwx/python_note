@@ -12,6 +12,7 @@ r=map(multi,[1,2,3,4,5])
 #r是一个惰性序列，需要用list计算
 print(list(r))
 
+
 #2，reduce()
 #reduce 把一个函数作用在一个序列上
 #reduce(f,[x1,x2,x3,x4])=f(f(f(x1,x2),x3),x4)
@@ -37,8 +38,7 @@ def normalize(word):
 L1=['adam', 'LISA', 'barT']
 L2=list(map(normalize,L1))
 print(L2)
-#practice2 
 
-str = "Line1-abcdef \nLine2-abc \nLine4-abcd"
-print(str.split( ))
-print(str.split(' ',1))
+#3，filter()
+#输入函数和字符串，
+

@@ -63,18 +63,68 @@ def _init():
 		yield n
 def not_dividible(n):
 	return lambda x :x%n>0
+#lamda用法：能够嵌入到其他表达式中的隐藏函数
+#	在表达式中重新定义一个函数，不需要把定义和表达式分开
+#	限制，只能由一条表达式去组成
 def prime():
 	n=2
 	it=_init()
 	while True:
 		n=next(it)
-		filter(not_dividible(n),it)
+		yield n
+		it=filter(not_dividible(n),it)
 for n in prime():
-	if n <100:
-		print n
+	if n<600:
+		print(n)
 	else:
 		break
+#filter也是惰性计算，这里n表示的是全体素数
 
+#practice,用filter过滤掉非回数
+'''def _init():
+	n=1
+	while True:
+		n=n+1
+		yield n
+def back(n):
+	n=str(n)
+	m=n[-1::-1]
+	return lambda n :n==m
+def prime():
+	yield 1
+	it=_init()
+	while True:
+		n=next(it)
+		yield n
+		it=filter(back(n),it)
+for n in prime():
+	if n < 500:
+		print(n)
+	else:
+		break
+还是不清楚在哪里出错了
+'''
+
+def back(n):
+	n=str(n)
+	m=n[-1::-1]
+ #   return lambda n :n==m    
+	if m==n:
+		return True
+	else:
+		return False
+	
+print(list(filter(back,range(12580,13580))))
+
+
+
+#4，sort排序算法
+#按照绝对值大小排队
+print(sorted([36,5,-12,5,-21],key=abs))
+#按照字符串长度排序
+print(sorted(['gakki','umr','toda','emma'],key=str.lower))
+#按照字符串长度反向排序
+print(sorted(['gakki','umr','toda','emma'],key=str.lower,reverse=True))
 
 
 

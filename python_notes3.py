@@ -3,6 +3,7 @@
 #允许把函数本身作为参数，传入另一个函数，还允许返回一个函数
 #===>高度抽象的编程方法
 
+#A:高阶函数
 #1，map()
 #两个传入参数：函数对象；Iterable(list,turple,dict)
 def multi(x):
@@ -136,8 +137,36 @@ print(sorted(L,key=by_score))
 
 
 
+#B：返回函数
+#example:
+def lazy_sum(*args):
+	def sum():
+		ax=0
+		for n in args:
+			ax = ax+n
+		return ax
+	return sum
+#返回函数的好处：调用lazy_sum()时不返回求和的结果
+#f=lazy_sum(1,2,3,4),调用f()时才真正计算结果
+f1=lazy_sum(1,2,3,4)
+print(f1())
+#返回的是求和的结果
+f2=lazy_sum(1,2,3,4)
+print(f1,f2)
+print(f1==f2)
+#f1,f2的计算结果不会相互影响，f1，f2的调用分别创建了两个新函数
+#每次调用函数，相关变量都储存在返回函数中，称为闭包。
 
-
+def count():
+	fs=[]
+	for i in range(1,4):
+		def f():
+			return i*i
+		fs.append(f)
+	return fs
+f1,f2,f3=count()
+#由于三个函数调用时没有立即执行，3个函数都返回时，他们所引用的变量i都变成3
+#一定要注意，返回函数不要引入循环变量，或者后续会发生变化的变量。
 
 
 

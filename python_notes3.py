@@ -64,9 +64,13 @@ def _init():
 		yield n
 def not_dividible(n):
 	return lambda x :x%n>0
-#lamda用法：能够嵌入到其他表达式中的隐藏函数
+#lambda用法：能够嵌入到其他表达式中的隐藏函数
 #	在表达式中重新定义一个函数，不需要把定义和表达式分开
 #	限制，只能由一条表达式去组成
+#lambda x:x*x等价于
+#def f(x):
+#	return x*x
+
 def prime():
 	n=2
 	it=_init()
@@ -109,12 +113,12 @@ for n in prime():
 def back(n):
 	n=str(n)
 	m=n[-1::-1]
- #   return lambda n :n==m    
+    #return lambda: n==m
 	if m==n:
 		return True
 	else:
 		return False
-	
+
 print(list(filter(back,range(12580,13580))))
 
 

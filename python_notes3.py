@@ -264,3 +264,25 @@ now1()
 def now2():
 	print('20170911')
 now2()
+
+
+
+#6，偏函数partial function
+#利用functools.partial 利用现有函数的功能,通过改变默认值创建新函数
+#以int()为例，设置base=N就可以做N进制的转换(把N进制数转化为十进制)：
+int('100010',base=2)
+#定义新函数：
+import functools
+int2 = functools.partial(int, base=2)
+print(int2('100010'))
+
+#总结：在函数参数太多，需要简化时使用，可以固定住原函数的部分参数，定义新函数。
+
+#创建partial function时，可以接收：函数对象；*arg；**kw三种参数
+#eg：
+max2=functools.partial(max,10)
+#10 作为*args参数加入到参数中。
+max2(5,6,7)
+#等价于
+args = (10,5,6,7)
+max(args)

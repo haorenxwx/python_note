@@ -141,7 +141,7 @@ print(sorted(L,key=by_score))
 
 
 
-#B：返回函数
+#5：返回函数
 #example:
 def lazy_sum(*args):
 	def sum():
@@ -173,4 +173,94 @@ f1,f2,f3=count()
 #一定要注意，返回函数不要引入循环变量，或者后续会发生变化的变量。
 
 
+#6 装饰器decorator
+#装饰器： 在代码运行期间，动态的增加功能
 
+#例1：要增加函数now的功能,在运行now()的过程中增加log：
+# 原有的now()
+def now():
+	print('20170911')
+#decorator:相当于返回函数的高阶函数：
+def log(func):
+	def wrapper(*args,**kw):
+	#(*args,**kw)表示wrapper可以接受任意参数的调用
+		print('call %s():' % func.__name__)
+		#func.__name__,表示取出func的名字
+		return func(*args, **kw)
+	return wrapper
+#log 作为装饰器，接受一个函数作为参数并且返回一个函数，利用'@log'把decorator放在函数的定义处
+@log
+def now():
+	print('20170911')
+now()
+
+#例2：自定义log的文本(decorator本身需要传入参数)
+def log(text):
+	def decorator(func):
+		def wrapper(*args,**kw):
+			print('%s %s():' % (text, func.__name__))
+			return func(*args,**kw)
+		return wrapper
+	return decorator
+@log('execute')
+def now():
+	print('20170911')
+now()
+print(now.__name__)
+#经过装饰后的函数，__name__已经从now变成了wrapper
+#所以需要把now()函数的属性(例如__name__)复制到wrapper中
+#利用functools.wraps,下面是标准的decorator的写法
+import functools
+def log(func):
+	@functools.wraps(func)
+	def wrapper(*args,**kw):
+		print('call %s():' % func.__name__)
+		return func(*args,**kw)
+	return wrapper
+#带参数的标准写法：
+def log(text):
+	def decorator(func):
+		@functools.wraps(func)
+		def wrapper(*args,**kw):
+			print('%s %s():' % (text, func.__name__))
+			return func(*args,**kw)
+		return wrapper
+	return decorator
+#练习1,在函数调用前后打印出'begin call'和'end call'
+def log(func):
+	@functools.wraps(func)
+	def wrapper(*args,**kw):
+		print('begin call')
+		func(*args,**kw)
+		print('end call')
+	return wrapper
+@log
+def now():
+	print('20170911')
+now()
+#练习2,支持@log, 也支持@log('execute')
+def log(text):
+	if callable(text):#检验是否有函数传入
+		@functools.wraps(text)
+		def wrapper(*args,**kw):
+			print('call %s():' %text.__name__)
+			return text(*args,**kw)
+		return wrapper
+#把所有的func都替换为text
+	else:
+		def decorator(func):
+			@functools.wraps(func)
+			def wrapper(*args,**kw):
+				print('%s %s():' % (text, func.__name__))
+				return func(*args,**kw)
+			return wrapper
+		return decorator
+@log
+def now1():
+	print('20170911')
+now1()
+
+@log('execute')
+def now2():
+	print('20170911')
+now2()

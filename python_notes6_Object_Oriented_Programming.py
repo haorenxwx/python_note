@@ -124,10 +124,27 @@ class Timer(object):
 run_twice(Timer())
 由于这样的特性，继承对于动态语言不像静态语言是必须的。
 
+#实例属性和类属性
 
-
-
-
+class Student(object):
+	name='Student'
+#定义了类属性：name='Student'
+s=Student()
+#创建实例s
+print(s.name)
+>>Student
+#打印name的属性，因为实例中没有name的属性，所以打印出类的属性
+s.name='Gakki'
+#给实例属性赋值
+print(s.name)
+>>Gakki
+#在实例属性有值以后，屏蔽类属性
+del s.name
+#删除实例属性
+print(s.name)
+>>Student
+#类属性又显示出来了
+相同名称的实例属性会屏蔽掉类属性
 
 
 

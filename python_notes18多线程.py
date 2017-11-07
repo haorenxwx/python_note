@@ -1,4 +1,4 @@
-# python_notes18多进程.py
+# python_notes18多线程.py
 
 多任务，可以由多进程完成，也可以由一个进程的多个线程完成
 python 线程是真的posix thread，而不是模拟出来的线程

@@ -1,4 +1,4 @@
-python_note24常用內建模块struct.py
+python_note26常用內建模块struct.py
 
 python 没有专门处理字节的数据类型，b'str'可以表示字节，故字节数组=二进制str
 python 提供了struct模块来解决bytes和其他二进制数据类型的转换

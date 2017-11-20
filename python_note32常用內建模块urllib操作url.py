@@ -1,0 +1,3 @@
+python_note32常用內建模块urllib操作url.py
+
+Get

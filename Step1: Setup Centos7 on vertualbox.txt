@@ -1,0 +1,73 @@
+Instruction all in one
+wordpress URL: https://xuwx271771271.wordpress.com/
+
+1：Install Centos and set ssh conncetion on virtualbox toturial:
+	http://www.jeramysingleton.com/=install-centos-7-minimal-in-virtualbox/
+
+2: Connect virtualmachine from local computer
+	
+	under NAT conncetion mode:
+		$ssh -p 2222 xuwx@localhost
+	After change domain name	
+		$ssh -p 2222 xuwx@xuwanxin
+		
+
+		$ping -w 5 ip  (查看网络连接) (control+c/z  pause/stop ping)
+		$ip ad  (查看网络信息)
+
+3: Basic Server setup
+	https://www.digitalocean.com/community/tutorials/initial-server-setup-with-centos-7
+
+	set 2 network mode:
+	https://www.jianshu.com/p/e6ba699b5992
+	under mac, enable host-only mode under: file>host network manager
+
+	set virtual machine as webserver
+	http://blog.sina.com.cn/s/blog_484d87770102uxi6.html
+	http://blog.csdn.net/estrs_k/article/details/70193804
+	reference: http://graybull.is-programmer.com/posts/36941.html
+
+	virtual machine ip:192.168.56.101(check from ifconfig)
+	set domain name for vitual machine: https://www.liberiangeek.net/2014/11/set-centos-7-fully-qualify-hostname/
+
+4: Install LAMP(Linux Apache Mysql PHP)
+	https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-7
+
+	finished: http://192.168.56.101/info.php working on server.
+
+5: Install wordpress on Centos 7:
+	
+	https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-centos-7
+	https://www.howtoing.com/how-to-install-wordpress-on-centos-7(中字)
+
+6: Word press setting	
+	Setting record
+	- mysql setting:
+		. DBname: wordpress
+		. Username: xuwx
+		. Password: karen12345
+
+	- wordpress setting
+		. Sitetitle: xuwanxin
+		. Username: xuwx@yo
+		. Password: n3CSZI&1VFIukRY*lC
+		. Email: xuwx@garena.com
+
+	- siteaddress: http://192.168.56.101/wp-admin/
+
+7: change hostname to xuwanxin.com
+	setting on host machine:
+		$ sudo vi /etc/hosts
+	add a line:
+		$ 192.168.56.101 xuwanxin.com xuwanxin
+	- siteaddress: http://xuwanxin.com/ and http://192.168.56.101/
+
+8: multisite setting
+	https://www.digitalocean.com/community/tutorials/how-to-set-up-multiple-wordpress-sites-using-multisite
+
+	sudo nano /var/www/wp-config.php
+	--->change to 
+	sudo nano /var/www/html/wp-config.php
+
+9: Make backup DB, after delete wordpress DB
+

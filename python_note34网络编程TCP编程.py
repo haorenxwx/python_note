@@ -79,16 +79,31 @@ while True:
 	t.start()
 def tcplink(sock, addr):
 	print('Accept new connection from %s:%s...' % addr)
-	sock.send(b'welcome!')
+	sock.send(b'welcome!')# 建立连接以后，服务器发送欢迎信息
 	while True:
-		data = sock.recv(1024)
+		data = sock.recv(1024)# 等待客户数据
 		time.sleep(1)
-		if not data or data.decode('utf-8')=='exit':
+		if not data or data.decode('utf-8')=='exit':# 如果客户发送了exit字符串，直接关闭连接。
 			break
 		sock.send(('Hello, %s!' % data.decode('utf-8')).encode('utf-8'))
 	sock.close()
 	print('connection from %s: %s closed.' % addr)
 	
+******
+编写与服务器程序对应的客户端程序
+******
+
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)#IPV4&TCP
+s.connect(('127.0.0.1', 9999))
+print(s.recv(1024).decode('utf-8'))
+for data in [b'Michel',b'Tracy',b'Sarah']:
+	#发送数据：
+	s.send(data)
+	print(s.recv(1024).decode('utf-8'))
+s.send(b'exit')# 发送exit信号
+s.close()
+
+
 
 
 

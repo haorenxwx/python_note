@@ -76,5 +76,13 @@ Telnet:
 web结构组件：
 	代理：客户端和服务器之间的HTTP实体，用于转发请求，
 		对请求和响应做出过滤
-	cache: HTTP仓库，将常用页面副本保存在立客户端更近的地方
+	缓存（web cache&proxy cache: HTTP仓库，将常用页面副本保存在立客户端更近的地方
+		客户端从附近缓存下载文档会比远程web server下载快速
 	gateway: 连接其他应用程序的特殊web服务器
+		通常用于将HTTP流量转化为其他协议，
+		如HTTP/FTP网关： 通过HTTP请求接受对FTP URI的请求
+						通过HTTP请求接受对FTP协议获取文档，并封装成HTTP报文
+	隧道（tunnel）：建立后，对原始数据进行盲转发的HTTP应用程序
+		如HTTP/SSL隧道：通过HTTP连接承载加密的SSL流量	
+	agent代理：代表用户发起HTTP请求的客户端程序（如：web 浏览器，自动搜索引擎“网络蜘蛛”）
+					

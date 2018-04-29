@@ -46,4 +46,8 @@ python_note37访问数据库.py
 
 
 MySQL:
+安装：https://www.jianshu.com/p/fd3aae701db9
+设置环境变量 https://www.jianshu.com/p/acb1f062a925
+initial password: <Ktqm9yLsMDb
+
 
